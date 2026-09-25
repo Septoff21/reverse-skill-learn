@@ -7,6 +7,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Added
+- **Cloud lab bootstrap (fork workflow)** — `cloud-lab-bootstrap.sh` + `docs/CLOUD-LAB.md` stand up an isolated **offline sample-analysis** lab in one command inside a clean, credential-free Linux box (Claude cloud session / throwaway VPS / container). It is **Linux-gated** (refuses to run on any other OS so a reverse/pentest toolchain never lands on a credential-bearing workstation), reuses the repo's own manifest installers to set up the file-analysis tier only (`jadx apktool r2 rabin2 binwalk yara bkcrack`, `+pwntools` via `--with-pwn`), regenerates `tool-index`, and verifies with `test-routing.sh` + `test-bootstrap-manifest.sh`. Live-target/network tools (`nmap`, `agent-browser`, `proxycat`, `burpsuite`, `seclists`) are intentionally excluded from this offline lab.
 - **CI runs remaining unwired suites** — `test-p0-friction.ps1` on the Windows leg of `routing-tests` (Windows PowerShell 5.1); `case-review/tests/test_review_case.py` in the Linux `case-contract` job. `test-workflow-title-safety.ps1` was already wired.
 - **Binary Ninja route and skill** — added `binary-ninja-reverse` for HLIL/MLIL/LLIL, Python API, and an explicitly enabled loopback community MCP bridge; Binary Ninja remains a manual commercial dependency.
 - **Optional Codex adapter plugin** — added `plugins/reverse-skill/` without changing the client-neutral core or auto-registering MCP servers.
